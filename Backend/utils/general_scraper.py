@@ -25,10 +25,9 @@ def sanitize_css_selector(selector: str) -> str:
     """
     Attempt to fix minor syntax issues, including '++' usage, and handle NoneType.
     """
-    if not selector or not isinstance(selector, str):  # Check for None or invalid type
+    if not selector or not isinstance(selector, str):
         return ""
 
-    # Fix consecutive plus signs -> single '+'
     while '++' in selector:
         selector = selector.replace('++', '+')
 
@@ -56,6 +55,7 @@ def parse_reviews(html_content, css_selectors, driver=None):
     reviews = []
     soup = BeautifulSoup(html_content, "html.parser")
 
+    # Extract selectors
     container_sel = sanitize_css_selector(css_selectors.get("review_container"))
     title_sel = sanitize_css_selector(css_selectors.get("title"))
     body_sel = sanitize_css_selector(css_selectors.get("body"))
@@ -74,26 +74,22 @@ def parse_reviews(html_content, css_selectors, driver=None):
         return reviews
 
     for index, element in enumerate(review_elements):
-        # Handle "Read More" button if a selector is provided and driver is available
+        # Handle "Read More" if provided and driver is available
         if driver and read_more_sel:
             try:
-                # Find the "Read More" button for the current review
                 read_more_button = element.select_one(read_more_sel)
                 if read_more_button:
-                    # Scroll to the element and click
                     driver.execute_script("arguments[0].scrollIntoView();", read_more_button)
                     time.sleep(0.5)
                     driver.execute_script("arguments[0].click();", read_more_button)
                     time.sleep(1)
-
-                    # Update the soup with the expanded review content
                     html_content = driver.page_source
                     soup = BeautifulSoup(html_content, "html.parser")
-                    element = soup.select(container_sel)[index]  # Re-fetch the specific review container
+                    element = soup.select(container_sel)[index]
             except Exception as e:
                 print(f"Failed to click 'Read More' for review {index}: {e}")
 
-        # Extract review details with safe checks for None
+        # Extract review details
         title_elem = safe_select_one(element, title_sel)
         body_elem = safe_select_one(element, body_sel)
         rating_elem = safe_select_one(element, rating_sel)
@@ -104,17 +100,6 @@ def parse_reviews(html_content, css_selectors, driver=None):
         rating = rating_elem.get_text(strip=True) if rating_elem else None
         reviewer = reviewer_elem.get_text(strip=True) if reviewer_elem else None
 
-        # Log missing elements for debugging
-        if not title_elem:
-            print(f"Missing title for review at index {index}")
-        if not body_elem:
-            print(f"Missing body for review at index {index}")
-        if not rating_elem:
-            print(f"Missing rating for review at index {index}")
-        if not reviewer_elem:
-            print(f"Missing reviewer for review at index {index}")
-
-        # Skip empty reviews
         if not (title or body or rating or reviewer):
             continue
 
@@ -126,6 +111,7 @@ def parse_reviews(html_content, css_selectors, driver=None):
         })
 
     return reviews
+
 
 def get_actual_next_button(soup, next_button_sel):
     """
@@ -139,7 +125,7 @@ def get_actual_next_button(soup, next_button_sel):
             continue
         return cand
 
-    return None  # No valid next button found
+    return None
 
 
 def extract_reviews(url):
@@ -157,7 +143,6 @@ def extract_reviews(url):
 
         while True:
             html_content = driver.page_source
-
             css_selectors = identify_css_selectors_from_html(html_content)
             if not css_selectors:
                 print("Failed to identify CSS selectors using OpenAI.")
@@ -219,6 +204,6 @@ def extract_reviews(url):
             "reviews": all_reviews,
             "error": str(e)
         }
+
     finally:
         driver.quit()
-

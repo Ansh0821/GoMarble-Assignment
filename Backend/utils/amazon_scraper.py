@@ -4,6 +4,7 @@ from pprint import pprint
 from dotenv import load_dotenv
 import os
 
+# Load environment variables
 load_dotenv()
 OXYLABS_USERNAME = os.getenv("OXYLABS_USERNAME")
 OXYLABS_PASSWORD = os.getenv("OXYLABS_PASSWORD")
@@ -11,17 +12,19 @@ OXYLABS_PASSWORD = os.getenv("OXYLABS_PASSWORD")
 def process_amazon_reviews(url, domain, pages, sort_by):
     """
     Fetch reviews for an Amazon product using Oxylabs API.
+
     :param url: Amazon product page URL
     :param domain: Amazon domain (e.g., 'com', 'in', etc.)
     :param pages: Number of review pages to scrape
     :param sort_by: Sort reviews by 'recent' or 'top'
     :return: JSON response with reviews
     """
-    asin = extract_asin(url)  # Extract ASIN from the given URL
+    # Extract ASIN from the provided URL
+    asin = extract_asin(url)
     if not asin:
         return {"error": "Unable to extract ASIN from URL"}
 
-    # Build the payload for the Oxylabs API
+    # Build the payload for the Oxylabs API request
     payload = {
         'source': 'amazon_reviews',
         'domain': domain,
@@ -37,6 +40,7 @@ def process_amazon_reviews(url, domain, pages, sort_by):
     }
 
     try:
+        # Send the POST request to Oxylabs API
         response = requests.post(
             'https://realtime.oxylabs.io/v1/queries',
             auth=(OXYLABS_USERNAME, OXYLABS_PASSWORD),
@@ -44,9 +48,9 @@ def process_amazon_reviews(url, domain, pages, sort_by):
         )
         response.raise_for_status()  # Raise HTTPError for bad responses
         data = response.json()
-        pprint(data)  # Debugging purpose
+        pprint(data)  # For debugging purposes
 
-        # Extract reviews
+        # Extract reviews from the API response
         reviews = []
         for result in data.get("results", []):
             content = result.get("content", {})
@@ -55,4 +59,5 @@ def process_amazon_reviews(url, domain, pages, sort_by):
         return {"reviews": reviews, "reviews_count": len(reviews)}
 
     except requests.exceptions.RequestException as e:
+        # Handle HTTP request errors
         return {"error": str(e)}

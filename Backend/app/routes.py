@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from utils.scraper import process_url
 
+# Create a Blueprint for the review routes
 review_routes = Blueprint("review_routes", __name__)
 
 @review_routes.route("/api/reviews", methods=["GET"])
@@ -8,6 +9,7 @@ def get_reviews():
     """
     API endpoint to scrape reviews from a product page.
     Expects 'page' as a query parameter.
+    Example: /api/reviews?page=<product_page_url>
     """
     # Fetch 'page' query parameter
     url = request.args.get("page")

@@ -1,7 +1,5 @@
 Flask
 requests
 beautifulsoup4
-trafilatura
 openai
-pytesseract
-Pillow
+
