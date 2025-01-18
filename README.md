@@ -61,3 +61,38 @@ Scrape The Web/
    ```bash
    git clone https://github.com/Ansh0821/GoMarble-Assignment.git
    cd GoMarble-Assignment/Backend
+
+2. **Create and Activate a virtual environment**:
+   - On macOS/Linux:
+      ```bash
+      python -m venv venv
+      source venv/bin/activate
+   - On Windows:
+     ```bash
+        python -m venv venv
+        venv\Scripts\activate
+
+3. **Install Dependencies**:
+   ```bash
+      pip install -r requirements.txt
+
+4. **Add API Keys**:
+   - Create a `.env` file in the `Backend` directory
+   - Add the following credentials:
+     ```bash
+     OPENAI_API_KEY=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
+      OXYLABS_USERNAME=Ansh_2108_sqYtX
+      OXYLABS_PASSWORD=pCFt33EVA7Gsn9q_
+
+5. **Run the Backend server**:
+   -**Endpoint**:`api/reviews?page={url}`
+      - **Description**: Extracts reviews from a product URL. Automatically handles pagination and returns structured review data.
+  
+## 🛠️ Dependencies
+
+- **Flask**: For creating API routes.
+- **Selenium**: For browser automation to scrape dynamic content.
+- **requests**: For handling HTTP requests.
+- **beautifulsoup4**: For parsing and navigating HTML content.
+- **openai**: For dynamic CSS selector identification using OpenAI API.
+
