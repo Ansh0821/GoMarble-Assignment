@@ -50,7 +50,7 @@ You are a web-scraping assistant analyzing a product reviews page's HTML.
 {html_content}
 """
         response = client.chat.completions.create(
-            model="gpt-4o-mini",  # or any model you have access to
+            model="gpt-4o",  # or any model you have access to
             messages=[
                 {"role": "system", "content": "You are a web scraping assistant."},
                 {"role": "user", "content": prompt}

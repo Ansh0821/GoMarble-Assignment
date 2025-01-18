@@ -1,5 +1,7 @@
 Flask
-selenium
+requests
 beautifulsoup4
+trafilatura
 openai
-python-dotenv
+pytesseract
+Pillow

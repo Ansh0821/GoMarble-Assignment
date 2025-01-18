@@ -1,17 +1,19 @@
 from flask import Blueprint, request, jsonify
-from utils.scraper import extract_reviews
+from utils.scraper import process_url
 
 review_routes = Blueprint("review_routes", __name__)
 
 @review_routes.route("/api/reviews", methods=["GET"])
 def get_reviews():
+    """
+    API endpoint to scrape reviews from a product page.
+    Expects 'page' as a query parameter.
+    """
+    # Fetch 'page' query parameter
     url = request.args.get("page")
     if not url:
-        return jsonify({"error": "Missing 'page' parameter in the request"}), 400
+        return jsonify({"error": "Missing 'page' query parameter in the URL"}), 400
 
-    try:
-        # Call the extract_reviews function
-        reviews_data = extract_reviews(url)
-        return jsonify(reviews_data), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # Process the URL based on domain (Amazon, Flipkart, etc.)
+    result = process_url(url)
+    return jsonify(result)
