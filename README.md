@@ -96,3 +96,33 @@ Scrape The Web/
 - **beautifulsoup4**: For parsing and navigating HTML content.
 - **openai**: For dynamic CSS selector identification using OpenAI API.
 
+---
+
+---
+
+## 🎨 Frontend Setup
+
+### Requirements
+- Node.js **14+**
+- npm
+
+### Setup Instructions
+
+1. **Navigate to the Frontend Directory**:
+   ```bash
+   cd GoMarble-Assignment/Frontend
+
+### Install Dependencies:
+```bash
+npm install
+```
+
+### Run the Frontend:
+```bash
+npm run dev
+```
+
+### Access the Application:
+Open your browser and navigate to:
+[http://localhost:5173](http://localhost:5173)
+
