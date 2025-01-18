@@ -69,8 +69,8 @@ Scrape The Web/
       source venv/bin/activate
    - On Windows:
      ```bash
-        python -m venv venv
-        venv\Scripts\activate
+     python -m venv venv
+     venv\Scripts\activate
 
 3. **Install Dependencies**:
    ```bash
@@ -80,7 +80,7 @@ Scrape The Web/
    - Create a `.env` file in the `Backend` directory
    - Add the following credentials:
      ```bash
-     OPENAI_API_KEY=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
+     OPENAI_API_KEY=<api_key>
       OXYLABS_USERNAME=Ansh_2108_sqYtX
       OXYLABS_PASSWORD=pCFt33EVA7Gsn9q_
 
