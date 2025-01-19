@@ -14,11 +14,13 @@ const ScraperPage = () => {
     setError("");
     setReviews([]);
     setCurrentPage(1);
-
+  
     try {
       // Call the API
       const response = await axios.get(`/api/reviews?page=${url}`);
-      if (response.data.reviews && response.data.reviews.length > 0) {
+      if (response.data.error) {
+        setError(response.data.error); // Display the backend-provided error
+      } else if (response.data.reviews && response.data.reviews.length > 0) {
         setReviews(response.data.reviews);
       } else {
         setError("No reviews were fetched. Please try again with a valid URL.");
@@ -30,7 +32,7 @@ const ScraperPage = () => {
       setLoading(false);
     }
   };
-
+  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };

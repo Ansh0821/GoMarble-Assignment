@@ -77,8 +77,11 @@ You are a web-scraping assistant analyzing a product reviews page's HTML.
         return selectors
 
     except json.JSONDecodeError as e:
-        print(f"JSON Parsing Error: {e}")
-        return None
+        return {"error": f"JSON Parsing Error: {e}"}
     except Exception as e:
-        print(f"OpenAI Error: {e}")
-        return None
+        # Explicitly handle OpenAI quota errors or any generic errors
+        if hasattr(e, "response") and e.response:
+            error_response = e.response.json()
+            if error_response.get("error", {}).get("code") == "insufficient_quota":
+                return {"error": "OpenAI Quota Exceeded: Please check your plan and billing details."}
+        return {"error": f"OpenAI Error: {str(e)}"}

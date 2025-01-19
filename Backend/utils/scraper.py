@@ -27,4 +27,8 @@ def process_url(url):
     
     # For any other domain, fallback to the general scraper
     else:
-        return scrape_general_reviews(url)
+        result = scrape_general_reviews(url)
+        if "error" in result:
+            return {"error": result["error"]}  # Pass OpenAI errors
+        return result
+    
