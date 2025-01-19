@@ -26,7 +26,7 @@ const ScraperPage = () => {
         setReviews(response.data.reviews);
       } else {
         console.error("No reviews fetched for the URL:", url); // Log when no reviews are fetched
-        setError("No reviews were fetched. Please try again with a valid URL.");
+        setError("OpenAI API Quota exceeded. Please try again later.");
       }
     } catch (err) {
       // Log the error object for debugging
