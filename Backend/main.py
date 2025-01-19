@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = create_app()  # Create an instance of your Flask app
 
 # Update the CORS configuration to match both frontend and backend
-CORS(app, origins=["https://scrapetheweb.netlify.app"])
+CORS(app, origins=["https://scrapetheweb.netlify.app", "http://localhost:5173"])
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Default to port 5000 for local testing
