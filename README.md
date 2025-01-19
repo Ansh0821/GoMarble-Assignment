@@ -120,6 +120,16 @@ Scrape The Web/
 npm install
 ```
 
+### Adding Environment Variables in Frontend
+
+To configure environment variables for the frontend, follow these steps:
+
+1. **Create a `.env` file** in the `Frontend` directory.
+2. Add the following environment variable to the `.env` file:
+   ```plaintext
+   VITE_BACKEND_URL=https://scrape-the-web-backend.onrender.com
+
+
 ### Run the Frontend:
 ```bash
 npm run dev
