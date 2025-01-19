@@ -97,6 +97,7 @@ Scrape The Web/
 - **openai**: For dynamic CSS selector identification using OpenAI API.
 - **python-dotenv**: For managing environment variables.
 - **webdriver_manager**: For managing ChromeDriver automatically.
+- **flask-cors**: For managing cross origin requests.
 
 ---
 
@@ -128,7 +129,7 @@ npm run dev
 Open your browser and navigate to:
 [http://localhost:5173](http://localhost:5173)
 
---
+---
 
 ## 🌐 Deployment
 The project has been deployed and can be accessed via the following URLs:
