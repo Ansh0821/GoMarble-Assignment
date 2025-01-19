@@ -8,31 +8,53 @@ const ScraperPage = () => {
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleScrape = async () => {
     setLoading(true);
     setError("");
     setReviews([]);
     setCurrentPage(1);
-  
+
     try {
       // Call the API
-      const response = await axios.get(`/api/reviews?page=${url}`);
+      const response = await axios.get(`${API_URL}/api/reviews?page=${url}`);
       if (response.data.error) {
+        console.error("Backend Error:", response.data.error); // Log the error returned by the backend
         setError(response.data.error); // Display the backend-provided error
       } else if (response.data.reviews && response.data.reviews.length > 0) {
         setReviews(response.data.reviews);
       } else {
+        console.error("No reviews fetched for the URL:", url); // Log when no reviews are fetched
         setError("No reviews were fetched. Please try again with a valid URL.");
       }
     } catch (err) {
+      // Log the error object for debugging
       console.error("Error fetching reviews:", err);
-      setError("An error occurred while scraping reviews. Please try again.");
+      
+      if (err.response) {
+        // If the error is from the API response
+        console.error("API Response Error:", err.response.data);
+        setError(
+          `Error: ${
+            err.response.data?.error ||
+            "An error occurred while scraping reviews. Please try again."
+          }`
+        );
+      } else if (err.request) {
+        // If no response was received
+        console.error("No response received from the backend:", err.request);
+        setError("No response from the server. Please check your connection.");
+      } else {
+        // Any other errors
+        console.error("Error during the request setup:", err.message);
+        setError("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
-  
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
