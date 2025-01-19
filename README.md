@@ -151,7 +151,7 @@ To test locally, follow the backend setup instructions provided above.
 - Ensure the .env file is properly configured with valid API keys.
 - For unsupported websites, the OpenAI API dynamically identifies the CSS selectors to scrape reviews.
 
-  ## 🚀 Usage
-  - Access the deployed frontend to interact with the review scraper.
-  - Provide product URLs for Amazon, Flipkart, or other e-commerce platforms.
-  - View extracted reviews directly in the interface.
+## 🚀 Usage
+- Access the deployed frontend to interact with the review scraper.
+- Provide product URLs for Amazon, Flipkart, or other e-commerce platforms.
+- View extracted reviews directly in the interface.
