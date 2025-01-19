@@ -137,4 +137,21 @@ The project has been deployed and can be accessed via the following URLs:
 
 For any updates or issues with the deployed application, ensure the backend environment variables are properly configured via the Render dashboard.
 
+## 💡 Notes
 
+### For OpenAI Quota and testing
+If reviews are not being fetched on the deployed server, it might be due to the OpenAI quota being exceeded. 
+
+In such cases:
+- Please test the application locally by running the backend server on your local machine.
+- Ensure that the **OPENAI_API_KEY** in your `.env` file is valid and has sufficient quota.
+
+To test locally, follow the backend setup instructions provided above.
+
+- Ensure the .env file is properly configured with valid API keys.
+- For unsupported websites, the OpenAI API dynamically identifies the CSS selectors to scrape reviews.
+
+## 🚀 Usage
+- Access the deployed frontend to interact with the review scraper.
+- Provide product URLs for Amazon, Flipkart, or other e-commerce platforms.
+- View extracted reviews directly in the interface.
