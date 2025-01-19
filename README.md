@@ -81,8 +81,8 @@ Scrape The Web/
    - Add the following credentials:
      ```bash
      OPENAI_API_KEY=<api_key>
-      OXYLABS_USERNAME=Ansh_2108_sqYtX
-      OXYLABS_PASSWORD=pCFt33EVA7Gsn9q_
+      OXYLABS_USERNAME=Ansh_0821_O9DzW	
+      OXYLABS_PASSWORD=Password_8084
 
 5. **Run the Backend server**:
    -**Endpoint**:`api/reviews?page={url}`
