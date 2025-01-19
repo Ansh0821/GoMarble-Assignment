@@ -8,7 +8,7 @@ const ScraperPage = () => {
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
-  const API_URL = import.meta.env.VITE_BACKEND_URL;
+  const API_URL = "http://127.0.0.1:5000";
 
   const handleScrape = async () => {
     setLoading(true);
