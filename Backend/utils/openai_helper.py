@@ -57,7 +57,7 @@ You are a web-scraping assistant analyzing a product reviews page's HTML.
 """
         # Make the API call to OpenAI
         response = client.chat.completions.create(
-            model="gpt-4o",  # Specify the model version available to you
+            model="gpt-3.5-turbo",  # Specify the model version available to you
             messages=[
                 {"role": "system", "content": "You are a web scraping assistant."},
                 {"role": "user", "content": prompt}
