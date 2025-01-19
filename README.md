@@ -144,7 +144,7 @@ Open your browser and navigate to:
 ## 🌐 Deployment
 The project has been deployed and can be accessed via the following URLs:
 - **Backend**: [https://scrape-the-web-backend.onrender.com](https://scrape-the-web-backend.onrender.com)
-
+- **Frontend**: [https://scrapetheweb.netlify.app](https://scrapetheweb.netlify.app)
 
 For any updates or issues with the deployed application, ensure the backend environment variables are properly configured via the Render dashboard.
 
