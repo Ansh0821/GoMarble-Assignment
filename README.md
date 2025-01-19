@@ -95,6 +95,8 @@ Scrape The Web/
 - **requests**: For handling HTTP requests.
 - **beautifulsoup4**: For parsing and navigating HTML content.
 - **openai**: For dynamic CSS selector identification using OpenAI API.
+- **python-dotenv**: For managing environment variables.
+- **webdriver_manager**: For managing ChromeDriver automatically.
 
 ---
 
@@ -125,4 +127,14 @@ npm run dev
 ### Access the Application:
 Open your browser and navigate to:
 [http://localhost:5173](http://localhost:5173)
+
+--
+
+## 🌐 Deployment
+The project has been deployed and can be accessed via the following URLs:
+- **Backend**: [https://scrape-the-web-backend.onrender.com](https://scrape-the-web-backend.onrender.com)
+
+
+For any updates or issues with the deployed application, ensure the backend environment variables are properly configured via the Render dashboard.
+
 
